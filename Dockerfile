@@ -3,7 +3,8 @@ FROM golang:1.22.3-bookworm as build
 WORKDIR app
 COPY . .
 RUN go mod tidy
-ENTRYPOINT go run .
+RUN go build
+ENTRYPOINT ./tigrinhobet
 #
 # FROM ubuntu
 # COPY --from=build /bin/app tigrinhobet
