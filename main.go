@@ -65,5 +65,9 @@ func main() {
 		return c.Render(200, "betDisplay", params)
 	})
 
+	e.GET("/bets", func(c echo.Context) error {
+		return c.JSON(200, params)
+	})
+
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
