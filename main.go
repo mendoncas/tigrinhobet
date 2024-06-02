@@ -38,9 +38,9 @@ func main() {
 	bets := make([]models.Bet, 0)
 	bets = append(
 		bets,
-		models.Bet{Value: "200", Description: "vai dar merda", BetterEmail: "caio@unifor.br"},
-		models.Bet{Value: "2.50", Description: "vai dar bom", BetterEmail: "pedro@unifor.br"},
-		models.Bet{Value: "999", Description: "vai ser o laio", BetterEmail: "ripardo@unifor.br"},
+		models.Bet{Value: "200", Description: "vai dar errado", BetterEmail: "usuaio3@email.br"},
+		models.Bet{Value: "2.50", Description: "vai dar certo", BetterEmail: "usuario2@email.br"},
+		models.Bet{Value: "999", Description: "nao sei mais", BetterEmail: "usuario1@email.br"},
 	)
 	params := Params{Bets: &bets}
 	e.Use(middleware.Logger())
@@ -63,6 +63,10 @@ func main() {
 			Value:       c.FormValue("value"),
 		})
 		return c.Render(200, "betDisplay", params)
+	})
+
+	e.GET("/bets", func(c echo.Context) error {
+		return c.JSON(200, params)
 	})
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
