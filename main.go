@@ -65,5 +65,5 @@ func main() {
 		return c.Render(200, "betDisplay", params)
 	})
 
-	e.Logger.Fatal(e.Start(os.Getenv("PORT")))
+	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
