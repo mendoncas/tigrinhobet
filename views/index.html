@@ -19,7 +19,7 @@
 <!-- formulario pra adicionar um novo evento -->
 {{block "betForm" .}}
 <form hx-swap="outerHTML" hx-target="#bets" hx-post="/bet">
-  Valor da aposta: <input type="float" name="valor" value="valor da aposta">
+  Valor da aposta: <input type="float" name="value" value="valor da aposta">
   Email: <input type="email" name="email" value="email do apostador">
   Evento: <input type="event" name="description" value="descrição do evento que vai acontecer">
   <button type="submit">criar evento</button>
