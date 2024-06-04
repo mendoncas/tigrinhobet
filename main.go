@@ -69,5 +69,10 @@ func main() {
 		return c.JSON(200, params)
 	})
 
-	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
+	port, found := os.LookupEnv("PORT")
+	if !found {
+		port = "3000"
+	}
+
+	e.Logger.Fatal(e.Start(":" + port))
 }
