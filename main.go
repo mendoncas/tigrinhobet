@@ -38,9 +38,7 @@ func main() {
 	bets := make([]models.Bet, 0)
 	bets = append(
 		bets,
-		models.Bet{Value: "200", Description: "vai dar errado", BetterEmail: "usuaio3@email.br"},
-		models.Bet{Value: "2.50", Description: "vai dar certo", BetterEmail: "usuario2@email.br"},
-		models.Bet{Value: "999", Description: "nao sei mais", BetterEmail: "usuario1@email.br"},
+    models.Bet{ Value: "200",Description: "Apostando no cavalo preto",BetterEmail: "usuaio3@email.br",Fullname: "Usuário Três",Phone: "11-99999-9999", Address: "Rua Exemplo, 123", Country: "Brasil",PaymentMethod: "Nubank", Category: "Cavalo", BirthData: "1990-01-01"},
 	)
 	params := Params{Bets: &bets}
 	e.Use(middleware.Logger())
@@ -57,10 +55,17 @@ func main() {
 	})
 
 	e.POST("/bet", func(c echo.Context) error {
-		bets = append(bets, models.Bet{
-			Description: c.FormValue("description"),
-			BetterEmail: c.FormValue("email"),
-			Value:       c.FormValue("value"),
+    bets = append(bets, models.Bet{
+			Description:   c.FormValue("description"),
+			BetterEmail:   c.FormValue("email"),
+			Value:         c.FormValue("value"),
+			Fullname:      c.FormValue("fullname"),
+			Phone:         c.FormValue("phone"),
+			Address:       c.FormValue("address"),
+			Country:       c.FormValue("country"),
+			PaymentMethod: c.FormValue("paymentMethod"),
+			Category:      c.FormValue("category"),
+			BirthData:     c.FormValue("birthData"),
 		})
 		return c.Render(200, "betDisplay", params)
 	})
